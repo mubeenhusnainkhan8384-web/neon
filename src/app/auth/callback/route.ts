@@ -10,7 +10,12 @@ export async function GET(request: NextRequest) {
 
   if (code) {
     const supabase = await createSupabaseServerClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+if (!supabase) {
+  return NextResponse.redirect(new URL('/auth/auth-code-error', request.url));
+}
+
+const { error } = await supabase.auth.exchangeCodeForSession(code);;
 
     if (!error) {
       // Successful auth — redirect to dashboard (or wherever "next" says)

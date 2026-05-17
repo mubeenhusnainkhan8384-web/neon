@@ -279,7 +279,7 @@ export default function ProductResearchPage() {
                 <Label className="text-xs font-semibold uppercase tracking-widest text-gray-400">
                   Category
                 </Label>
-                <Select value={category} onValueChange={setCategory}>
+                <Select value={category} onValueChange={(value) => value && setCategory(value)}>
                   <SelectTrigger className="h-10 border-gray-200 bg-gray-50 text-sm text-gray-800 transition-colors duration-150 hover:border-gray-300 hover:bg-white focus:border-gray-900 focus:ring-0 data-[state=open]:border-gray-900 data-[state=open]:bg-white">
                     <SelectValue placeholder="All Categories" />
                   </SelectTrigger>
@@ -358,7 +358,7 @@ export default function ProductResearchPage() {
                     max={20000}
                     step={100}
                     value={minSales}
-                    onValueChange={setMinSales}
+                    onValueChange={(value) => setMinSales(Array.isArray(value) ? value : [value])}
                     className="w-full
                       [&_.relative]:h-1.5
                       [&_.relative]:rounded-full
